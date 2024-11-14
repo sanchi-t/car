@@ -5,6 +5,10 @@ import HomeScreen from './screens/HomeScreen';
 import VehicleListScreen from './screens/VehicleListScreen';
 import AddEditVehicleScreen from './screens/AddEditVehicleScreen';
 import VehicleDetailsScreen from './screens/VehicleDetailsScreen';
+import OBDConnectionScreen from './screens/OBDConnectionScreen';
+import OBDDataScreen from './screens/OBDDataScreen';
+// import DashboardScreen from './screens/DashboardScreen';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +26,11 @@ const AppNavigator = () => {
           } else if (route.name === 'AddEditVehicle') {
             iconName = focused ? 'add' : 'add-outline';
           } 
+          else if (route.name === 'OBDConnection') {
+            iconName = focused ? 'bluetooth' : 'bluetooth-outline';
+          } else if (route.name === 'OBDData') {
+            iconName = focused ? 'speedometer' : 'speedometer-outline';
+          }
 
           // Return the appropriate icon component
           return <Ionicons name={iconName} size={size} color={color} />;
@@ -38,7 +47,9 @@ const AppNavigator = () => {
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="VehicleList" component={VehicleListScreen} />
       <Tab.Screen name="AddEditVehicle" component={AddEditVehicleScreen} />
-    
+      <Tab.Screen name="OBDConnection" component={OBDConnectionScreen} />
+      <Tab.Screen name="OBDData" component={OBDDataScreen} />
+      {/* <Tab.Screen name="Dashboard" component={DashboardScreen} /> */}
       
       {/* ... add other screens */}
     </Tab.Navigator>

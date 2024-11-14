@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, FlatList, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity, Text, Button } from 'react-native';
 
 const VehicleListScreen = ({ navigation }) => {
   const [vehicles] = useState([
@@ -15,6 +15,11 @@ const VehicleListScreen = ({ navigation }) => {
     >
       <Text style={styles.vehicleName}>{item.name}</Text>
       <Text>Mileage: {item.mileage} km</Text>
+      {/* Connect to OBD-II button for each vehicle */}
+      <Button
+        title="Connect to OBD-II"
+        onPress={() => navigation.navigate('OBDConnection', { vehicleId: item.id })}
+      />
     </TouchableOpacity>
   );
 
@@ -30,6 +35,13 @@ const VehicleListScreen = ({ navigation }) => {
         onPress={() => navigation.navigate('AddEditVehicle')}
       >
         <Text style={styles.addButtonText}>Add Vehicle</Text>
+      </TouchableOpacity>
+      {/* Single Connect to OBD-II button at the bottom */}
+      <TouchableOpacity
+        style={styles.obdButton}
+        onPress={() => navigation.navigate('OBDConnection')}
+      >
+        <Text style={styles.obdButtonText}>Connect to OBD-II</Text>
       </TouchableOpacity>
     </View>
   );
@@ -59,6 +71,18 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   addButtonText: {
+    color: '#FFFFFF',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  obdButton: {
+    marginTop: 10,
+    backgroundColor: '#007BFF',
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  obdButtonText: {
     color: '#FFFFFF',
     textAlign: 'center',
     fontWeight: 'bold',
